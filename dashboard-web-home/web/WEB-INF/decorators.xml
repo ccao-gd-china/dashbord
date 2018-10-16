@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<decorators defaultdir="/WEB-INF/sitemesh/">
+	<!-- Excludes will never be decorated by Sitemesh. -->
+	<excludes>
+		<pattern>/assets/*</pattern>
+		<pattern>/images/*</pattern>
+		<pattern>/upload/*</pattern>
+		<pattern>/pages/*</pattern>
+		<pattern>/login*</pattern>
+		<pattern>/login.jsp*</pattern>
+		<pattern>/logout*</pattern>
+		<pattern>/logout.jsp*</pattern>
+		<pattern>/loadjs.jsp*</pattern>
+		<pattern>/favicon.ico*</pattern>
+		<pattern>/api/*</pattern>
+		<pattern>/index*</pattern>
+		<pattern>/excel/*</pattern>
+        <pattern>/home*</pattern>
+	</excludes>
+	<decorator name="adm" page="dec/admin.dec">
+		<pattern>/*</pattern>
+		<pattern>/*.ftl</pattern>
+	</decorator>
+
+</decorators>
+
+

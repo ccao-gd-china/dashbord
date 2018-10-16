@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.yao.dashboard</groupId>
+		<artifactId>dashboard</artifactId>
+		<version>0.0.1</version>
+	</parent>
+	<artifactId>dashboard-web-home</artifactId>
+	<packaging>war</packaging>
+
+	<name>dashboard-web-home</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+
+		<!-- <dependency> <groupId>com.yao.dashboard</groupId> <artifactId>dashboard-common-dao</artifactId> </dependency> <dependency> 
+			<groupId>com.yao.dashboard</groupId> <artifactId>dashboard-common-utils</artifactId> </dependency> <dependency> <groupId>com.yao.dashboard</groupId> 
+			<artifactId>dashboard-biz-service</artifactId> </dependency> <dependency> <groupId>com.yao.dashboard</groupId> <artifactId>dashboard-biz-rpc</artifactId> 
+			</dependency> -->
+
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+		</dependency>
+
+		<!-- sitemesh -->
+		<!--<dependency>-->
+			<!--<groupId>opensymphony</groupId>-->
+			<!--<artifactId>sitemesh</artifactId>-->
+		<!--</dependency>-->
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+		</dependency>
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>${javax.servlet.api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>${javax.servlet.jsp.api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>${maven-war-plugin.version}</version>
+				<configuration>
+					<warSourceDirectory>web</warSourceDirectory><!-- Default value is: ${basedir}/src/main/webapp. -->
+					<failOnMissingWebXml>false</failOnMissingWebXml>
+					<!-- warName:Default value is: ${project.build.finalName} -->
+					<warName>${appName}</warName>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

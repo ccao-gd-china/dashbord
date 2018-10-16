@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                              http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <pluginGroups>
+    <pluginGroup>org.sonarsource.scanner.maven</pluginGroup>
+  </pluginGroups>
+
+  <servers>
+    <server>
+      <id>artifactory</id>
+      <username>ci_pull</username>
+      <password>ULrKBez7AH9pnaF6</password>
+    </server>
+  </servers>
+
+  <mirrors>
+    <mirror>
+      <id>artifactory</id>
+      <mirrorOf>*</mirrorOf>
+      <url>https://artifactory.secureserver.net/artifactory/java-virt</url>
+    </mirror>
+  </mirrors>
+
+  <profiles>
+    <profile>
+      <id>artifactory</id>
+      <repositories>
+        <repository>
+          <id>central</id>
+          <url>https://artifactory.secureserver.net/artifactory/maven-commerce-platform-local</url>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+        <repository>
+          <id>snapshots</id>
+          <url>https://artifactory.secureserver.net/artifactory/maven-commerce-platform-local</url>
+          <snapshots/>
+        </repository>
+        <repository>
+          <id>artifactory</id>
+          <url>https://artifactory.secureserver.net/artifactory/java-virt</url>
+          <snapshots/>
+        </repository>
+      </repositories>
+    </profile>
+    <profile>
+      <id>sonar</id>
+      <properties>
+        <sonar.host.url>http://sonar-ecomm.int.godaddy.com:9000</sonar.host.url>
+      </properties>
+    </profile>
+  </profiles>
+
+  <activeProfiles>
+    <activeProfile>artifactory</activeProfile>
+    <activeProfile>sonar</activeProfile>
+  </activeProfiles>
+</settings>

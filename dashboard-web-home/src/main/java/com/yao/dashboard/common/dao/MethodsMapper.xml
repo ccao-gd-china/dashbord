@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yao.dashboard.common.dao.MethodsMapper">
+    <resultMap id="BaseResultMap" type="com.yao.dashboard.common.domain.MethodsInfo">
+        <id column="id" property="id"/>
+        <result column="country" property="country"/>
+        <result column="currency" property="currency"/>
+        <result column="checks" property="checks"/>
+        <result column="ids" property="ids"/>
+    </resultMap>
+
+    <select id="getMethodsList" resultMap="BaseResultMap">
+        SELECT id, country, currency, checks
+        FROM  methods_checks
+    </select>
+
+    <select id="getMethodsListByGroup" resultMap="BaseResultMap">
+        SELECT country,currency,
+            [checks]=STUFF((
+                select ','+ [checks]
+                    from [dbo].[methods_checks] m
+                    where m.country = [dbo].[methods_checks].country and currency=[dbo].[methods_checks].currency
+                    for xml path('')),1,1,''),
+            [ids] = stuff((
+                select ',' + cast([id] as varchar)
+                    from [dbo].[methods_checks] n
+                    where n.country = [dbo].[methods_checks].country and currency=[dbo].[methods_checks].currency
+                    for xml path('')),1,1,'')
+        from [dbo].[methods_checks]
+		group by country, currency;
+    </select>
+
+    <select id="getIdByInfo" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT id
+        FROM methods_checks
+        WHERE country = #{country}
+         AND  currency = #{currency}
+         AND  checks = #{checks}
+    </select>
+
+    <delete id="deleteIgnoreChecks" parameterType="java.lang.Integer">
+        DELETE FROM methods_checks
+        WHERE id = #{id};
+    </delete>
+
+</mapper>
